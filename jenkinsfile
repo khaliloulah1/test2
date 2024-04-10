@@ -1,0 +1,16 @@
+pipeline{
+    agent any
+    tools{
+        maven "maven3"
+    }
+
+    stages{
+        stage('Build Maven'){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/khaliloulah1/test2.git']])
+                sh "mvn clean install"
+            }
+
+        }
+    }
+}
